@@ -1,0 +1,39 @@
+explicit keyword
+    - prevents implicit conversions or copy-initialization
+    Example1:
+    class A {
+        A(int x) {}
+    };
+
+    inf foo(A a) {}
+
+    foo(10) - the compiler will see that there is a constructor in A that is receiving an int as parameter so it will perform an explicit conversion
+
+    Example2:
+    struct A {
+        A(int);
+        A(int, int)
+        operator bool() const {return true}
+    }
+
+    A a1 = 1; // ok - copy initialization
+    A a2(1); // direct initialization
+    A a1 = {1, 2} // ok - copy initialization list
+    A a2{1, 2} // ok - direct initialization list
+    if(a1) // ok - op bool
+    bool a1 = a2 // ok, copy init
+    bool a1 = static_cast<bool>(a2) // ok cast
+
+    struct B {
+        explicit A(int)
+        explicit A(int, int)
+        explicit operator bool() {}
+    }
+
+    B b1 = 1 //error - prevents copy init
+    B b2(1) // ok, direct init
+    B b1 = {1, 2} // error - prevents copy list initialization
+    B b2{1, 2} // ok - direct list init
+    if(b1) - ok
+    bool b1 = b2 // error - copy init
+    bool b1 = static_cat<bool>(b2) // ok
