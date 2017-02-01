@@ -8,7 +8,7 @@
 
 class A {
 public:
-    // whithowt override - the methds from B are overloaded
+    // withowt override - the methds from B are overloaded
     virtual void f1(short x)
     {
         std::cout << "A: f1 " << x << std::endl;
