@@ -1,0 +1,6 @@
+Command pattern: behavioural pattern
+  - Wrapps a request in a command and send the req to the ivoker to exexut the command
+  
+  Stock - request
+  Order - command
+  Broker - invoker 
